@@ -6,6 +6,7 @@ deploy: build
 	scp bin/crony pi@raspy3:/home/pi/sunsetty	
 	scp run.sh pi@raspy3:/home/pi/sunsetty	
 	scp .env pi@raspy3:/home/pi/sunsetty	
+	scp dropbox_uploader.sh pi@raspy3:/home/pi/sunsetty	
 
 build-mail:
 	GOOS=linux GOARCH=arm go build -o bin/mail cmd/mail/main.go
