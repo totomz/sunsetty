@@ -1,15 +1,15 @@
 #!/bin/bash
 cd /home/pi/sunsetty
 
-for i in {0..10}; do    
-    image="/tmp/image_$(date +%d%m%Y_%H%M%S).jpg"
+for i in {0..3}; do    
+    image="/tmp/image_$(date +%Y%m%d_%H-%M-%S).jpg"
     echo "$(date) today I'm taking $image / $i" >> /home/pi/sunsetty/dio.log
     
     # Get the screen from the camera
     fswebcam -p YUYV -r 1024x768 -S 80 --rotate 180 $image
     echo "$(date) pic taken" >> /home/pi/sunsetty/dio.log
     
-    ./dropbox_uploader.sh upload $image /
+    ./dropbox_uploader.sh upload $image /$(date +%Y%m%d)/
     echo "$(date) pic uploaded" >> /home/pi/sunsetty/dio.log
     
     # Wait for the next minute
