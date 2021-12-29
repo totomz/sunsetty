@@ -57,9 +57,11 @@ func main() {
 		d = d.Add(24 * time.Hour)
 
 		// Get the sunset time
-		res, err := http.Get(fmt.Sprintf(
+		url := fmt.Sprintf(
 			"https://api.sunrise-sunset.org/json?lng=12.501337544365304&lat=41.96905141478927&formatted=0&date=%s",
-			d.Format("2006-01-02")))
+			d.Format("2006-01-02"))
+
+		res, err := http.Get(url)
 		if err != nil {
 			stdout.Fatal(err)
 		}
@@ -82,6 +84,9 @@ func main() {
 		if debug {
 			sunset = time.Now().Add(2 * time.Minute)
 		}
+
+		// Start taking picture before the sunset, to hopefully have the best shot
+		sunset = sunset.Add(-10 * time.Minute)
 
 		cronString := strings.Join([]string{
 			sunset.Format("04"), // minute

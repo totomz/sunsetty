@@ -1,7 +1,7 @@
 #!/bin/bash
 cd /home/pi/sunsetty
 
-for i in {0..3}; do    
+for i in {0..20}; do    
     image="/tmp/image_$(date +%Y%m%d_%H-%M-%S).jpg"
     echo "$(date) today I'm taking $image / $i" >> /home/pi/sunsetty/dio.log
     
